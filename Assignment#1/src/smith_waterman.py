@@ -12,7 +12,6 @@ def read_substitution_matrix(filepath):
         return substitution_matrix
     
 def smith_waterman(seq1, seq2, n, substitution_matrix_path, gap_penalty, output_file):
-    # Substitution matrix'i CSV dosyasından oku
     substitution_matrix = read_substitution_matrix(substitution_matrix_path)
     len_seq1, len_seq2 = len(seq1), len(seq2)
     dp_matrix = np.zeros((len_seq1 + 1, len_seq2 + 1))
@@ -51,7 +50,7 @@ def smith_waterman(seq1, seq2, n, substitution_matrix_path, gap_penalty, output_
     for pos in max_positions[:n]:
         traceback(pos[0], pos[1], '', '')
 
-    # Output to file
+
     with open(output_file, 'w') as f:
         for idx, (align1, align2) in enumerate(alignments[:n], 1):
             f.write(f"Local alignment no. {idx}:\n")
