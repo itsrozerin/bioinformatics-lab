@@ -11,13 +11,19 @@ def read_substitution_matrix(filepath):
             substitution_matrix[pair] = int(score)
         return substitution_matrix
     
+
+# Smith-Waterman function for local alignment
 def smith_waterman(seq1, seq2, n, substitution_matrix_path, gap_penalty, output_file):
+    # Read substitution matrix from provided file path
     substitution_matrix = read_substitution_matrix(substitution_matrix_path)
     len_seq1, len_seq2 = len(seq1), len(seq2)
+    
+    # Initialize dynamic programming (DP) matrix with zeros
     dp_matrix = np.zeros((len_seq1 + 1, len_seq2 + 1))
     max_score = 0
     max_positions = []
 
+    # Fill the DP matrix based on the substitution scores and gap penalties
     for i in range(1, len_seq1 + 1):
         for j in range(1, len_seq2 + 1):
             pair = (seq1[i - 1], seq2[j - 1])
@@ -33,6 +39,7 @@ def smith_waterman(seq1, seq2, n, substitution_matrix_path, gap_penalty, output_
             elif dp_matrix[i][j] == max_score:
                 max_positions.append((i, j))
 
+    # Recursive function to perform traceback and build alignments
     alignments = []
     def traceback(i, j, align1, align2):
         if len(alignments) >= n or dp_matrix[i][j] == 0:
@@ -47,10 +54,12 @@ def smith_waterman(seq1, seq2, n, substitution_matrix_path, gap_penalty, output_
             if dp_matrix[i][j] == dp_matrix[i-1][j-1] + score:
                 traceback(i-1, j-1, align1 + seq1[i-1], align2 + seq2[j-1])
 
+    # Perform traceback from all positions with maximum scores
     for pos in max_positions[:n]:
         traceback(pos[0], pos[1], '', '')
 
 
+    # Write results to the specified output file
     with open(output_file, 'w') as f:
         for idx, (align1, align2) in enumerate(alignments[:n], 1):
             f.write(f"Local alignment no. {idx}:\n")
