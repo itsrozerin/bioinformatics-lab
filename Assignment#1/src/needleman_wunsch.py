@@ -1,5 +1,5 @@
 import csv
-import numpy
+import numpy as np
 
 def read_substitution_matrix(filepath):
     substitution_matrix = {}
@@ -47,3 +47,12 @@ def needleman_wunsch(seq1, seq2, n, substitution_matrix_path, gap_penalty, outpu
             score = substitution_matrix.get(pair, gap_penalty)
             if dp_matrix[i][j] == dp_matrix[i-1][j-1] + score:
                 traceback(i-1, j-1, align1 + seq1[i-1], align2 + seq2[j-1])
+            
+            traceback(len_seq1, len_seq2, '', '')
+
+   
+    with open(output_file, 'w') as f:
+        for idx, (align1, align2) in enumerate(alignments[:n], 1):
+            f.write(f"Global alignment no. {idx}:\n")
+            f.write(f"{align1}\n{align2}\n")
+            f.write(f"Score: {int(dp_matrix[len_seq1][len_seq2])}\n\n")
