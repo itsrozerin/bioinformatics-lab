@@ -1,6 +1,8 @@
 """
 Finding out about similarities in different DNA sequences is an important task in Bioinformatics. 
 In this project, I implemented two different DNA sequence allignment algortihms: Needleman-Wunsch and Smith-Waterman.
+Needlman-Wunsch is a global alignment algortihm so it tries to align the whole sequence of both DNAs.
+Whereas Smith-Waterman is a local alignment algorithm.
 Learnt more about what can I do with Python and its many useful libraries like NumPy.
 Also, shoutout to Needleman, Wunsch, Smith and Waterson for coming up with these brilliant ways of analizing sequences :)
 Rozerin Dag, 2024
