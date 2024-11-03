@@ -1,4 +1,6 @@
 import numpy as np
+from traceback import trace_back
+from file_operations import write_alignments_to_file, read_substitution_matrix
 
 # Needleman-Wunsch (NW) global alignment function
 def needleman_wunsch(substitution_matrix, gap_penalty, max_alignments, nw_output_filename):

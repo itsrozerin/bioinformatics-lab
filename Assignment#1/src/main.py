@@ -1,3 +1,6 @@
+import numpy 
+from alignments import needleman_wunsch, smith_waterman
+
 # Main function
 def main():
 
