@@ -1,10 +1,5 @@
 Alignment 1:
--TATA
-ATAT-
-Score: 11
-
-Alignment 2:
-TATA-
--ATAT
+GGGATAGC-
+---ATATCG
 Score: 11
 

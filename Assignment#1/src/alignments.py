@@ -4,8 +4,8 @@ from file_operations import write_alignments_to_file, read_substitution_matrix
 
 # Needleman-Wunsch (NW) global alignment function
 def needleman_wunsch(substitution_matrix, gap_penalty, max_alignments, nw_output_filename):
-    seq1 = "TATA"  # First example DNA sequence
-    seq2 = "ATAT"  # econd example DNA sequence
+    seq1 = "GGGATAGC"  # First example DNA sequence
+    seq2 = "ATATCG"  # econd example DNA sequence
     substitution_matrix = read_substitution_matrix("dna_matrix.csv")
     m, n = len(seq1), len(seq2)
     dp = np.zeros((m+1, n+1), dtype=int) # Here we need to intialize a matrix containing (m+1)*(n+1). 
@@ -34,8 +34,8 @@ def needleman_wunsch(substitution_matrix, gap_penalty, max_alignments, nw_output
 
 # Smith-Waterman (SW) local alignment function
 def smith_waterman(substitution_matrix, gap_penalty, max_alignments, sw_output_filename):
-    seq1 = "TATA"  # first example DNA sequence
-    seq2 = "ATAT"  # second example DNA sequence
+    seq1 = "TATAGC"  # first example DNA sequence
+    seq2 = "ATATCG"  # second example DNA sequence
     substitution_matrix = read_substitution_matrix("dna_matrix.csv")
     m, n = len(seq1), len(seq2)
     dp = np.zeros((m + 1, n + 1), dtype=int) # Here we need to intialize a matrix containing (m+1)*(n+1).

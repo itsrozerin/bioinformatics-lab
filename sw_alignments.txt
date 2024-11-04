@@ -1,5 +1,5 @@
 Alignment 1:
-TAT
-TAT
-Score: 15
+ATAGC
+ATATC
+Score: 19
 
